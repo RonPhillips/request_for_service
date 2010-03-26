@@ -1,0 +1,105 @@
+<div style='float:left'><h1>Editing service_request</h1>
+<% form_for(@service_request) do |f| %>
+<%= render :partial => 'form' , :locals=>{:f => f} %>
+<%= submit_tag 'Save' %>
+<% end %>
+</div>
+
+<div id='map_holder' style='float:right; margin:5px; padding:15px 5px 5px 5px;'>
+    <div id="map" style="width: 400px; height: 500px">
+    </div>
+    <form id='geocode_widget' action=''>
+        <p>
+            <input type="text" size="60" id='txt_address' name="address" value="538 E. South St., Akron, OH" />
+            <br/>
+            <input type="button" value="Go to a ref point" id='btn_address' />
+        </p>
+    </form>
+</div>
+<div style='clear:both;' id='return_content'>Contents:<ol id='lister'></ol>Types:<ol id='type_lister'></ol></div>
+<%= link_to 'Show', @service_request %> |<%= link_to "List of service_requests", service_requests_path %>
+<% default_latitude = 41.5
+default_longitude = -81.3 -%>
+<!--[eoform:service_request]-->
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	var map = null;
+	var geocoder = null;
+	var reficon = null;
+	var default_center = null;
+	var sce_bounds = new google.maps.LatLngBounds(new google.maps.LatLng(40.8969058, -81.5968323),new google.maps.LatLng(41.3242324, -81.3977050) )
+	
+	
+	function load() {
+		default_center = new google.maps.LatLng(<%=default_latitude%>, <%= default_longitude %>)
+		var map_options = {
+			zoom: 13,
+			center: default_center,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			navigationControlOptions: {
+				style: google.maps.NavigationControlStyle.DEFAULT
+			}
+		}
+
+	    map = new google.maps.Map(document.getElementById("map"),map_options);
+		geocoder = new google.maps.Geocoder();
+		
+		var origin_icon = new google.maps.Marker({
+			position: default_center,
+			map: map,
+			title: 'Current Location',
+			clickable: false,
+			icon: '/images/blueball.png'
+		});
+
+		// Plot two markers to represent the Rectangle's bounds.
+        marker_icon = new google.maps.Marker({
+          map: map,
+          position: default_center,
+          draggable: true,
+          title: 'Drag me!',
+		  icon:'/images/white_cross.png'
+        });
+		google.maps.event.addListener(marker_icon, 'drag', update_lat_lng);
+	    
+    function update_lat_lng() {
+	      //marker.openInfoWindowHtml("Lat:"+ marker.getPoint().lat()+"<br />Lon:"+marker.getPoint().lng());
+	      $('#lat_window')[0].value = marker_icon.getPosition().lat().toFixed(6);
+	      $('#lng_window')[0].value = marker_icon.getPosition().lng().toFixed(6);
+	      }
+	}
+	////////////////////
+	function codeAddress() {
+		var address = document.getElementById("txt_address").value;
+		if (geocoder) {
+			geocoder.geocode( { 'address': address, 'bounds': sce_bounds}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+					var marker = new google.maps.Marker({
+						map: map, 
+						position: results[0].geometry.location
+					});
+					marker_icon.setPosition(results[0].geometry.location)
+					$('#service_request_request_address')[0].value = results[0].formatted_address
+					
+					
+					//$('#service_request_jurisdiction')[0].value = results[0].address_components[0].long_name
+					//$('#service_request_route')[0].value=results[0].address_components.route.long_name
+				} else {
+					alert("Geocode was not successful for the following reason: " + status);
+				}
+			});
+		}
+		return false;
+	}
+
+	//////////////////////
+	$('#btn_address').bind('click', codeAddress)
+	$('#geocode_widget').submit(codeAddress)
+
+	load();
+});    
+//]]>
+            
+</script>

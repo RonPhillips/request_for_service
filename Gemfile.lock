@@ -1,0 +1,65 @@
+--- 
+dependencies: 
+  ruby-postgres: 
+    group: 
+    - :default
+    version: ">= 0"
+  rails: 
+    group: 
+    - :default
+    version: = 2.3.5
+  GeoRuby: 
+    group: 
+    - :default
+    version: ">= 0"
+  postgis_adapter: 
+    group: 
+    - :default
+    version: ">= 0"
+  rack: 
+    group: 
+    - :default
+    version: ">= 0"
+  paginator: 
+    group: 
+    - :default
+    version: ">= 0"
+specs: 
+- rake: 
+    version: 0.8.7
+- activeresource: 
+    version: 2.3.5
+- activerecord: 
+    version: 2.3.5
+- rails: 
+    version: 2.3.5
+- ruby-postgres: 
+    version: 0.7.1.2006.04.06
+- GeoRuby: 
+    version: 1.3.4
+- postgis_adapter: 
+    version: 0.7.8
+- rubyforge: 
+    version: 2.0.4
+- gemcutter: 
+    version: 0.5.0
+- rack: 
+    version: 1.0.1
+- json_pure: 
+    version: 1.2.3
+- hoe: 
+    version: 2.5.0
+- paginator: 
+    version: 1.1.1
+- actionmailer: 
+    version: 2.3.5
+- actionpack: 
+    version: 2.3.5
+- activesupport: 
+    version: 2.3.5
+hash: b49c7971c5391a398b39ab1d654b6e7ae4da6abc
+sources: 
+- Rubygems: 
+    uri: http://gemcutter.org
+- Rubygems: 
+    uri: http://gems.rubyinstaller.org

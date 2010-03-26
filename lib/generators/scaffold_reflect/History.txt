@@ -1,0 +1,10 @@
+== 1.1.0 / 2007-10-30
+* Changed form fields to use the form_for syntax (f.text_field and such)
+* Removed fields ending in _id from the generated forms.
+
+== 1.0.0 / 2007-10-25
+* Added the RESTful routing to the forms
+* Skipped datestamp and timestamp fields
+* changed booleans to checkboxes instead of selects
+  * Birthday!
+

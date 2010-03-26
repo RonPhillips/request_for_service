@@ -1,0 +1,25 @@
+<%%= error_messages_for '<%= singular_name %>' %>
+<h1><%= plural_name %> Results</h1>
+Searching fields: <%%= @fields.join(", ") %>
+<br />
+for the terms: "<%%= @terms %>"
+<br />
+Found <%%= @<%= plural_name %>.length %> records
+<table>
+    <tr>
+        <%%for field in @showfields %>
+        <th>
+            <%%=field %>
+        </th>
+        <%%end %>
+    </tr>
+    <%% for <%=singular_name %> in @<%=plural_name %>%>
+    <tr>
+        <%%for field in @showfields %>
+        <td>
+            <%%= <%=singular_name %>.send(field) %>
+        </td>
+        <%%end %>
+    </tr>
+    <%%end %>
+</table>

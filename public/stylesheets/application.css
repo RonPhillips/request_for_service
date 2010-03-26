@@ -1,0 +1,192 @@
+/*-----------------------------------------------------------------------------
+ Application Stylesheet
+ 
+ version:   1.0
+ author:    Ron Phillips
+ email:     rphillips@summitengineer.net
+ website:   http://uber.summitengineer.net
+ scope:     Styles for basic HTML entities and classes used across the application
+ 
+ -----------------------------------------------------------------------------*/
+/* =General
+ -----------------------------------------------------------------------------*/
+/******** Reset default browser CSS styles. *********/
+/* Based on Blueprint */ * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+/* Put it back on certain elements */
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, form, fieldset, table, ul {
+    margin: 1em 0;
+}
+
+/* Reinforce the default behaviour of a div*/
+div.container {
+    overflow: auto;
+}
+
+code {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+em {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+strong {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+/* Remember to define focus styles! */:focus {
+    outline: 0;
+}
+
+/* Remove border around linked images */
+img {
+    border: 0;
+}
+
+body {
+    line-height: 1;
+    color: black;
+    background: white;
+}
+
+/* Remove possible quote marks (") from <q>, <blockquote>. */
+blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+}
+
+blockquote, q {
+    quotes: "" "";
+}
+
+pre {
+    background-color: #eee;
+    padding: 0.1em;
+    font-size: 0.9em;
+}
+
+/* =Typography
+ -----------------------------------------------------------------------------*/
+body {
+    font: 62.5% / 1.6 "Lucida Grande", "Lucida Sans", "Trebuchet MS", Tahoma, Verdana, sans-serif;
+}
+
+/* =Headings
+ -----------------------------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.4em;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+h4 {
+    font-size: 1em;
+}
+
+h5 {
+    font-size: 0.9em;
+}
+
+h6 {
+    font-size: 0.8em;
+}
+
+/* =Links
+ -----------------------------------------------------------------------------*/
+/* =Branding
+ -----------------------------------------------------------------------------*/
+/* =Main Nav
+ -----------------------------------------------------------------------------*/
+/* =Sub Nav
+ -----------------------------------------------------------------------------*/
+/* =Main Content
+ -----------------------------------------------------------------------------*/
+/* =Secondary Content
+ -----------------------------------------------------------------------------*/
+/* =Footer
+ -----------------------------------------------------------------------------*/
+/* =Forms
+ -----------------------------------------------------------------------------*/
+/* Removes fieldset borders. even on Opera 7 */
+fieldset {
+    border: 1px dotted #ACD3E6;
+}
+
+/* =Tables
+ -----------------------------------------------------------------------------*/
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+td {
+    text-align: left;
+    font-weight: normal;
+    background-color: transparent;
+}
+
+/* =Classes
+ -----------------------------------------------------------------------------*/
+/* Class for clearing floats */
+.clear {
+    clear: both;
+}
+
+.hidden {
+    display: none;
+}
+
+.highlighted {
+    background: #ffdddd;
+    background-color: #ddcccc;
+    font-style: italic;
+}
+
+.label {
+    color: #3B5F87;
+}
+
+/* =Misc 2
+ -----------------------------------------------------------------------------*/ 

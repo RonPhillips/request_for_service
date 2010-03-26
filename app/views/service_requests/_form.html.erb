@@ -1,0 +1,41 @@
+<%= error_messages_for 'service_request' %>
+
+<!--[form:service_request]-->
+<p><label for="service_request_title">Title</label><br />
+<%= f.text_field 'title'  %></p>
+<p><label for="service_request_content">Content</label><br />
+<%= f.text_field 'content'  %></p>
+
+<p><label for="service_request_is_reference_only">Is reference only</label><br />
+<%= f.check_box 'is_reference_only'  %></p>
+<p><label for="service_request_route">Route</label><br />
+<%= f.text_field 'route'  %></p>
+
+
+<p><label for="service_request_requester_first_name">Requester first name</label><br />
+<%= f.text_field 'requester_first_name'  %></p>
+<p><label for="service_request_requester_family_name">Requester family name</label><br />
+<%= f.text_field 'requester_family_name'  %></p>
+<p><label for="service_request_requester_tor">Requester tor</label><br />
+<%= f.text_field 'requester_tor' %></p>
+<p><label for="service_request_request_address">Request address</label><br />
+<%= f.text_field 'request_address'  %></p>
+<p><label for="service_request_jurisdiction">Jurisdiction</label><br />
+<%= f.text_field 'jurisdiction'  %></p>
+<p><label for="service_request_status">Status</label><br />
+<%= f.text_field 'status'  %></p>
+<p><label for="service_request_created_by">Created by</label><br />
+<%= f.text_field 'created_by'  %></p>
+<p><label for="service_request_updated_by">Updated by</label><br />
+<%= f.text_field 'updated_by'  %></p>
+<p><label for="service_request_the_geom_4269">The geom 4269</label><br />
+<%#= f.text_field 'the_geom_4269'  %></p>
+<p><label for="service_request_the_geom_3734">The geom 3734</label><br />
+<%#= f.text_field 'the_geom_3734'  %></p>
+
+<p><label for="lat_window">4269 latitude</label><br />
+<%= text_field_tag 'lat_window'  %></p>
+<p><label for="lng_window">4269 longitude</label><br />
+<%= text_field_tag 'lng_window'  %></p>
+
+

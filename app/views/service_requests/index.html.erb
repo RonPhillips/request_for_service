@@ -1,0 +1,282 @@
+<%= error_messages_for 'service_request' %>
+
+<h1>Listing service_requests</h1>
+
+<p>TODO: 
+<ul>
+	<li>filtering:
+		<ul>
+			<li>"repeat this search" link</li>
+			<li>for road names</li>
+			<li>canned views of jurisdictions</li>
+			<li>map size update?</li>
+		</ul>
+	</li>
+	<li>style for small screen (iPhone)</li>
+	<li>attach photos</li>
+	<li>GPS on iPhone?</li>
+	<li>email steering for other jurisdictions</li>
+	</ul>
+</p>
+
+<!--[reflection:service_requests]-->
+<table id="results" class="tablesorter"><thead><tr>
+	<th>Line</th>
+	<th>Id</th>
+<th>Jurisdiction</th>
+<th>Route</th>
+<th>Title</th>
+<th>Content</th>
+<th>Status</th>
+<th>Name</th>
+<!--<th>Requester first name</th>
+<th>Requester family name</th>
+<th>Requester tor</th>
+<th>Request address</th>
+
+<th>Created by</th>
+<th>Updated by</th>
+<th>Created at</th>-->
+<!--<th>Updated at</th>-->
+<!--<th>Pt geom 4326</th>-->
+<!--<th>Pt geom 3734</th>-->
+<!--<th>Is reference only</th>-->
+
+</tr></thead><tbody><% @service_requests.each_with_index do | service_request, idx| %>
+<tr id='result_table_row_<%=idx%>'>
+<td><%=idx%></td>	
+<td><%=default_format(service_request,'id')%></td>
+<td><%=default_format(service_request,'jurisdiction')%></td>
+<td><%=default_format(service_request,'route')%></td>
+<td><%=default_format(service_request,'title')%></td>
+<td><%=default_format(service_request,'content')%></td>
+<td><%=default_format(service_request,'status')%></td>
+
+<!--<td><%=default_format(service_request,'requester_first_name')%></td>-->
+<!--<td><%=default_format(service_request,'requester_family_name')%></td>-->
+<!--<td><%=default_format(service_request,'requester_tor')%></td>-->
+<!--<td><%=default_format(service_request,'request_address')%></td>-->
+<!--<td><%=default_format(service_request,'updated_by')%></td>-->
+<!--<td><%=default_format(service_request,'created_at')%></td>-->
+<!--<td><|=default_format(service_request,'updated_at')|>-->
+<!--<td><|=default_format(service_request,'pt_geom_4326')|></td>-->
+<!--<td><|=default_format(service_request,'pt_geom_3734')|></td>-->
+<!--<td><|=default_format(service_request,'is_reference_only')|></td>-->
+
+<td><%= link_to 'Show', service_request %></td>
+<td><%= link_to 'Edit', edit_service_request_path(service_request) %></td>
+<td><%= link_to 'Destroy', service_request, :confirm => 'Are you sure?', :method => :delete %></td>
+</tr><% end %></tbody></table><!--[eoreflection:service_requests]-->
+  
+<div id='map' style='float:left; width:412px; height:667px; margin:10px;'>
+</div>
+<!-- ui-dialog -->
+<div id="dialog" title="Search Help" style='display:none;'>
+    <h3>You can search by two methods -- Title and Map. </h3>
+    <P>
+        There are two ways to 
+        use the application: geographic search and text search. 
+    </P>
+    <P>
+        To use the geographic
+        search:
+    </P>
+    <OL>
+        <LI>
+            <P>
+                On the map &ndash; 
+                click on &ldquo;Limits on/off&rdquo; to turn the search box on. 
+            </P>
+        </LI>
+        <LI>
+            <P>
+                Adjust the search 
+                box by &ldquo;grabbing&rdquo; the red balloons at the corners and  
+                dragging them to your area of interest &ndash; you may need to do a 
+                combination of zooming and adjusting the box to the area of  
+                interest. 
+            </P>
+        </LI>
+        <LI>
+            <P>
+                Once the area is 
+                defined &ndash; click &rdquo;GO&rdquo;&nbsp; to see a list of  
+                available documents 
+            </P>
+        </LI>
+        <LI>
+            <P>
+                Click on the number 
+                of the request in the &ldquo;box&rdquo; that you are interested  
+                in to view (and/or Print/Save) 
+            </P>
+        </LI>
+        <LI>
+        <P>
+            At present only 
+            about 30% of the documents are mapped &ndash; so be sure to use the  
+            &ldquo;TEXT&rdquo; search 
+        </P>
+    </OL>
+    <P>
+        To use the text
+        search:
+    </P>
+    <OL>
+        <LI>
+            <P>
+                Simply type part 
+                of the name of the roads around the request you are looking for in the box in the  
+                first line and click &ldquo;GO&rdquo;. 
+            </P>
+        </LI>
+        <LI>
+        <P>
+            Note: this is an 
+            &ldquo;OR&rdquo; search between terms, which means if you enter  
+            &ldquo;hill&rdquo; and &ldquo;rolling&rdquo; &nbsp;you will get 
+            every request with &ldquo;hill&rdquo; or &ldquo;rolling&rdquo; in  
+            the roads around it&ndash; not just those on &ldquo;Rolling Hills Road&rdquo; 
+        </P>
+        </li>
+    </OL>
+    <P>
+        <SPAN LANG="en">The
+            results are displayed alphabetically by community in pages of 50 &ndash; to switch
+            communities, click on a community. To switch pages, click on a page under the community</SPAN>
+    </P>
+</div>
+
+
+<br />
+
+<%= link_to 'New service_request', new_service_request_path %>
+
+<script>
+    //<![CDATA[
+    //$(document).ready(function(){
+        //var tab = $('#results').tablesorter();
+    //});
+    //]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+//initialize variables from the server
+<%#if session[:lat_min] == '_' -%>
+	var lats = [40.9, 41.36];
+	var lngs = [-81.69,-81.385];
+	var is_geo_result = false;
+<%# else %>
+	//var lats = [<%=session[:lat_min]%>, <%=session[:lat_max]%>];
+	//var lngs = [<%=session[:lng_min]%>, <%=session[:lng_max]%>];
+	//var is_geo_result = true;
+<%#end -%>
+var current_page = 1<%#= @page_o_requests.number %>;
+var total_pages = 1<%#= @pager.number_of_pages %>
+var locations = eval('<%= @json %>');
+//var page_labels = eval('(<%#= ActiveSupport::JSON.encode(@page_labels)%>)')
+var base_url = 'http://rphillips:3000'
+
+
+//////////////////////////////////
+// The rest is typical jQuery
+//////////////////////////////////
+
+$(document).ready(function(){
+	//initialize the active components
+	
+	var imap = SCE.IndexMap;
+	var map_options = {
+			zoom: 10,
+			center: (new google.maps.LatLng(41.15, -81.45)),
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			navigationControlOptions: {
+				style: google.maps.NavigationControlStyle.DEFAULT
+			}
+	}
+
+    imap.MapObject.Initialize(base_url,'map',map_options)
+	imap.TableObject.Initialize('results')
+	//searchComposer binds the page components to the lat, lon data
+	//sc = SCE.SearchComposer.Initialize(
+		//base_url,
+		//{
+		//'min_lat':lats[0],
+	 	//'max_lat':lats[1], 
+	 	//'min_lng':lngs[0], 
+	 	//'max_lng':lngs[1],
+		//'has_box':is_geo_result
+		//},
+	 	//$('#qs_location')[0].value
+		//);
+	//SearchBox is the box on the map -- returns a report of its corners, and
+	//calls a callback function when it is coded to do so.
+    /*SCE.SearchBox.Initialize(
+		imap,
+		{
+			box_min_lat:lats[0], 
+			box_min_lng:lngs[0], 
+			box_max_lat:lats[1], 
+			box_max_lng:lngs[1]
+		}, 
+		function(){updateSearchUrl();}
+	);*/
+	$('#dialog').show();
+	// Dialog			
+		$('#dialog').dialog({
+			autoOpen: false,
+			width: 600,
+			buttons: {
+				"Ok": function() { 
+					$(this).dialog("close"); 
+				}
+			}
+		});
+		
+		// Dialog Link
+		$('#dialog_link').click(function(){
+			$('#dialog').dialog('open');
+			return false;
+		});
+
+    var map = imap.MapObject;
+    //map.addControl(new GSmallMapControl());
+    //map.disableDoubleClickZoom();
+	$.each(locations, function(location_index, location){
+		var $txt = $('#result_table_row_' + location[0]+ '>td');
+		imap.createMarkers(location[0], location[1], location[2], $txt[2].innerHTML +' :: '+$txt[3].innerHTML);
+	});
+	//bind the local control events 
+	 //$('#qs_location').bind('keyup', updateSearchUrl)
+	 //$('#button_clear').bind('click', function(){
+	 	//$('#qs_location')[0].value = ''
+		//SCE.SearchBox.TurnOff();
+		//$('#scope_improvements').click()
+		//updateSearchUrl();
+	 //})
+	// provide some page-specific routines
+
+	function currentUrlString(){
+	 	//sc.updateTerms($('#qs_location')[0].value);
+		//sc.updateCorners(SCE.SearchBox.Report())
+    	//var destination = 'requests\/'
+		//var txt = sc.base_url + destination + sc.readURL();
+		//return txt;
+	};
+	 
+	function updateSearchUrl(){
+		var txt = currentUrlString();
+		$('#search_composer').attr('action', txt);
+		$('#searchlink').html("New search url: <a href='" + txt+ "'>" + txt  + "<\/a><\/p>")
+		$('#searchlink').effect('highlight',{'color':'#057aaf'}, 800);
+	};
+	//if it was a geo_search, turn on the box
+	//if(is_geo_result){
+		//SCE.SearchBox.TurnOn();
+	//}
+	//start it up with a url in place:
+	//updateSearchUrl();
+
+});
+//]]>
+</script>

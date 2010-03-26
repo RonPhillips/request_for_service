@@ -1,0 +1,46 @@
+NOTE: modified /vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb by adding:
+
+def PGconn.quote_ident(name)
+    %("#{name}")
+end 
+
+at line 19
+####################################################
+#DONE: Need to limit the number/size of fields in index page for generator. 
+
+Add "typical_index_select" to model.
+  def self.typical_index_select(options)
+    column_count = options[:column_count]||self.columns.length
+    use_columns = self.columns.collect do |column|
+      unless column.type.to_s=='text' || column.type.to_s=='binary'
+        if column.limit.nil?
+          column.name
+        elsif  column.limit<400
+          column.name 
+        end
+      else
+      end
+    end
+    use_columns=use_columns.first(column_count).join(',')
+    
+  end
+#############################################################
+Get "projects" demo out of there!
+
+Need to include the js and css in templates.
+
+How about upgrades on jquery?
+
+Rename the Hobo stuff?
+
+Add map plugin or option or ?
+
+For this one, just zoom and paginate: no box!
+
+Need to add footer, make that and header active.
+
+Import/export format and parser.
+
+Allow public comment on development? CEAO? County? (Mallison, Johnson)
+
+fix generator to add 'layouts/_footer.html.erb'

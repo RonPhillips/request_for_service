@@ -1,0 +1,100 @@
+<%= error_messages_for 'service_request' %>
+<!--[reflection:service_request]-->
+<p>
+    <b>Title: </b>
+    <%= default_format(@service_request, 'title') %>
+</p>
+<p>
+    <b>Content: </b>
+    <%= default_format(@service_request, 'content') %>
+</p>
+<p>
+    <b>Requester first name: </b>
+    <%= default_format(@service_request, 'requester_first_name') %>
+</p>
+<p>
+    <b>Requester family name: </b>
+    <%= default_format(@service_request, 'requester_family_name') %>
+</p>
+<p>
+    <b>Requester tor: </b>
+    <%= default_format(@service_request, 'requester_tor') %>
+</p>
+<p>
+    <b>Request address: </b>
+    <%= default_format(@service_request, 'request_address') %>
+</p>
+<p>
+    <b>Is reference only: </b>
+    <%= default_format(@service_request, 'is_reference_only') %>
+</p>
+<p>
+    <b>Route: </b>
+    <%= default_format(@service_request, 'route') %>
+</p>
+<p>
+    <b>Jurisdiction: </b>
+    <%= default_format(@service_request, 'jurisdiction') %>
+</p>
+<p>
+    <b>Status: </b>
+    <%= default_format(@service_request, 'status') %>
+</p>
+<p>
+    <b>Created by: </b>
+    <%= default_format(@service_request, 'created_by') %>
+</p>
+<p>
+    <b>Updated by: </b>
+    <%= default_format(@service_request, 'updated_by') %>
+</p>
+<p>
+    <b>Created at: </b>
+    <%= default_format(@service_request, 'created_at') %>
+</p>
+<p>
+    <b>Updated at: </b>
+    <%= default_format(@service_request, 'updated_at') %>
+</p>
+<p>
+    <b>Pt geom 4326: </b>
+    <%= @service_request.pt_geom_4326.y %>, <%= @service_request.pt_geom_4326.x %>
+</p>
+<p>
+    <b>The geom 3734: </b>
+    <%= @service_request.pt_geom_3734.x %>, <%= @service_request.pt_geom_3734.y %>
+</p>
+<!--[eoreflection:service_request]-->
+<div style='float:right;'>
+    <div id='map' style ="width: 250px; height: 150px; float:left;">
+    </div>
+</div>
+<%= link_to 'Edit', edit_service_request_path(@service_request) %> |<%= link_to "List of service_requests", service_requests_path %>
+<script type="text/javascript">
+    //<![CDATA[
+    <%is_default, cen_lat, cen_lng = fmt_pt(@service_request.pt_geom_4326) -%>
+    var is_default = <%=is_default%>
+    var cen_lat = <%=cen_lat%>
+    var cen_lng = <%=cen_lng%>
+    $(document).ready(function(){
+    	var latlng = new google.maps.LatLng(cen_lat, cen_lng); 
+    	var options = {
+    		zoom: 13,
+    		center: latlng,
+    		mapTypeId: google.maps.MapTypeId.ROADMAP,
+    		navigationControlOptions: {
+    			style: google.maps.NavigationControlStyle.SMALL
+    		}
+    	}
+    	var map = new google.maps.Map(document.getElementById("map"),options);
+    	// Creating a marker and positioning it on the map
+    	var marker = new google.maps.Marker({
+      		position: new google.maps.LatLng(cen_lat, cen_lng),
+      		map: map
+    	});
+    });
+    
+    
+    //]]>
+                
+</script>

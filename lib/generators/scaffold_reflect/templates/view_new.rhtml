@@ -1,0 +1,8 @@
+<h1>New <%= singular_name %></h1>
+
+<%% form_for(@<%= singular_name %>) do |f| %>
+  <%%= render :partial => 'form' , :locals=>{:f => f}%>
+  <%%= submit_tag "Add" %>
+<%% end %>
+
+<%%= link_to "List of <%= plural_name %>", <%= plural_name %>_path %>

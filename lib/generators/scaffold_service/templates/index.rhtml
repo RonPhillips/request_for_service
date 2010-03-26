@@ -1,0 +1,13 @@
+<%%= error_messages_for '<%= singular_name %>' %>
+
+
+<h1>Listing <%= plural_name %></h1>
+
+<table>
+<%= template_for_inclusion %>  
+</table>
+
+<br />
+
+<%%= link_to 'New <%= singular_name %>', new_<%= singular_name %>_path %>
+

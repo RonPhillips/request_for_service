@@ -1,0 +1,89 @@
+<h1>Here's how to use our web services:</h1>
+Let's assume we've offered a web service for roads data:
+<ul>
+    <li>
+        You want to list the roads:
+    </li>
+    <ul>
+        <li>
+            HTML: 'services/roads'
+        </li>
+        <li>
+            XML: 'services/roads.xml'
+        </li>
+        <li>
+            Excel: 'services/roads.xls'
+        </li>
+        <li>
+            Word: 'services/roads.doc'
+        </li>
+        <li>
+            JSON: 'services/roads.json'
+        </li>
+    </ul>
+    <li>
+        You just want a single road:
+    </li>
+    <ul>
+        <li>
+            HTML: 'services/roads/3'
+        </li>
+        <li>
+            XML: 'services/roads/15.xml'
+        </li>
+        <li>
+            Excel: 'services/roads/4.xls'
+        </li>
+        <li>
+            Word: 'services/roads/15.doc'
+        </li>
+        <li>
+            JSON: 'services/roads/3.json'
+        </li>
+    </ul>
+    <li>
+        You want to filter the records by using search terms:
+    </li>
+    <ul>
+        <li>
+            'services/roads?terms=arlin,co'
+        </li>
+        <li>
+            'services/roads?terms=man AND co'
+        </li>
+    </ul>
+    <li>
+        You only want certain fields searched:
+    </li>
+    <ul>
+        <li>
+            'services/roads?fields=name,road_number'
+        </li>
+    </ul>
+    <li>
+        You only want certain fields returned (you will always get back the search fields):
+    </li>
+    <ul>
+        <li>
+            &quot;showfields&quot; limits the fields returned to only those listed and the search fields:
+        </li>
+        <ul>
+            <li>
+                <%%= h('services/roads?terms=arlin,co&fields=name&showfields=road_number') %>
+            </li>
+        </ul>
+        <li>
+            &quot;sortfields&quot; reorders the records by sorting on the given fields
+        </li>
+        <ul>
+            <li>
+                <%%= h('services/roads?terms=arlin,co&fields=name&sortfields=road_number') %>
+            </li>
+        </ul>
+    </ul>
+</ul>
+<h3>These are the services offered at this URL:</h3>
+<%% for controller in @services -%>
+<%%= link_to controller, controller %>
+<br/>
+<%%end -%>

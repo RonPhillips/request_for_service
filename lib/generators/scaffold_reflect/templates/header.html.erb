@@ -1,0 +1,33 @@
+<div id='page_header'>
+    <div style='float:left'>
+        <div style='margin:1em'>
+            <img src='/images/sce_logo.png' alt='SCE Logo' />
+        </div>
+    </div>
+    <div style='float:left'>
+        <div style='margin:1em;'>
+            <h1 id='app_name' class="app-name"><a href="/"><%#=app_name %></a></h1>
+        </div>
+    </div>
+    <div id='page_controls' style='float:right;'>
+        <form id='frm_search' name='frm_search' action="" method='get'>
+            <a href="#" id="dialog_link" class="ui-state-default ui-corner-all">Help</a>
+            <input class="live-search" type="text" id='txt_search' name='terms' value='all' /><img class="hidden" id="search-spinner" src="/hobothemes/clean/images/spinner.gif" />
+			<input type='submit' value='Search' />
+        </form>
+		<!--<a href='mailto:hswindell@summitengineer.net?Subject=Equipment%20Tracker'>Contact the Summit County Engineer's office.</a>-->
+		<%#if session[:login]!='guest' %>
+        <%#=link_to 'Log out', :controller=>'users', :action=>'logout' %>
+        <%#else -%>
+        <%#=link_to 'Log in', :controller=>'users', :action=>'login' %>
+        <%#end -%>
+    </div>
+    <div style='clear:both;' id = 'page_nav'>
+        <a href="/machines">Home</a>
+         ||<%#=link_to 'List all descriptions', descriptions_path %>
+        ||<%#=link_to 'List all locations', locations_path %>
+    </div>
+    <p style="color: green">
+        <%#= flash[:notice] %>
+    </p>
+</div>
